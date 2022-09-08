@@ -10,6 +10,7 @@ namespace EstanciaCaballos.App.Dominio{
         public string color{get; set;}
         public string raza {get; set;}
         public string especie  {get; set;}   
+        public string variablePrueba {get;set;}
 
     }
 }

@@ -1,0 +1,38 @@
+en directorio raiz
+dotnet new sln -o EstanciaCaballos.App
+
+cd EstanciaCaballos.Ap
+dotnet new classlib -o EstanciaCaballos.App.Dominio
+dotnet new classlib -o EstanciaCaballos.App.Persistencia
+dotnet new webapi -o EstanciaCaballos.App.Servicios
+dotnet new webapp -o EstanciaCaballos.App.Frontend
+
+cd EstanciaCaballos.App.Persistencia
+dotnet add package Microsoft.EntityFrameworkCore --version 5.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 5.0.0
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.0
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 5.0.0
+dotnet add reference ..\EstanciaCaballos.App.Dominio\
+
+se crea clase AppContext que extiende de DbContext
+dotnet build
+
+cd  .. hasta llegar a EstanciaCaballos.App
+dotnet new console -o EstanciaCaballos.App.Console
+cd EstanciaCaballos.App.Console\
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 5.0.0
+dotnet add reference ..\EstanciaCaballos.App.Persistencia\
+dotnet build
+
+en Persistencia
+dotnet build
+dotnet ef migrations add inicial --startup-project ..\EstanciaCaballos.App.Console\
+dotnet ef database update --startup-project ..\EstanciaCaballos.App.Console\
+
+
+
+SqlServer
+Cadena de conexion: Server=localhost\SQLEXPRESS01;Database=master;Trusted_Connection=True;
+C:\Program Files\Microsoft SQL Server\150\Setup Bootstrap\Log\20220905_232421
+C:\SQL2019\Express_ENU
+C:\Program Files\Microsoft SQL Server\150\SSEI\Resources
