@@ -6,9 +6,10 @@ namespace EstanciaCaballos.App.Dominio{
         public int Id {get; set;}//primary key
         public Veterinario veterinarioAsignado{get; set;}
         public Persona propietario{get; set;}
+        public Finca finca  {get; set;}  
+        public string nombre  {get; set;}  
         public string color{get; set;}
         public string raza {get; set;}
         public string especie  {get; set;}   
-
     }
 }
