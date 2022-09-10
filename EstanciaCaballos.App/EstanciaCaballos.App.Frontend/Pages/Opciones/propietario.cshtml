@@ -1,0 +1,83 @@
+﻿@page
+@model EstanciaCaballos.App.Frontend.Pages.propietarioModel
+@{
+}
+<div class="container" id="propietarioForm" style="display: none;">
+  <h1>Añadir Propietario</h1>
+  <form class="row g-3 needs-validation" novalidate>
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">Nombre</label>
+      <input type="text" class="form-control" placeholder="Juan C." required>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">Apellido</label>
+      <input type="text" class="form-control" placeholder="Otalora" required>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustomDireccion" class="form-label">Dirección</label>
+      <div class="input-group has-validation">
+        <input type="text" class="form-control" placeholder="KR. 3 # 1 - 2" required>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustomTelefono" class="form-label">Teléfono</label>
+      <div class="input-group has-validation">
+        <input type="text" class="form-control" placeholder="1234567890" required>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="exampleFormControlInput1" class="form-label">Email</label>
+      <div class="input-group has-validation">
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+      </div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit"  onclick="mostarFormulario()">Guardar</button>
+    </div>
+  </form>
+</div>
+<div class="container" id="propietarioPrincipal">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-plus" onclick="mostarFormulario()"></i></button>
+    </div>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col"><b>Nombre</b></th>
+        <th scope="col"><b>Apellido</b></th>
+        <th scope="col"><b>Dirección</b></th>
+        <th scope="col"><b>Teléfono</b></th>
+        <th scope="col"><b>Correo</b></th>
+        <th scope="col"><b>Acciones</b></th>
+        </tr>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Carol</th>
+            <td>Villamil</td>
+            <td>Calle 1 # 2 - 3</td>
+            <td>9876543210</td>
+            <td>uncorre@gmail.com.co</td>
+            <td>
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-eye"></i></button>
+                <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-pen"></i></button>
+                <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-minus"></i></button>
+            </div>
+            </td>
+        </tr>
+        </tbody>
+    </thead>
+    </table>
+</div>
+<script>
+function mostarFormulario() {
+  var x = document.getElementById("propietarioForm");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>

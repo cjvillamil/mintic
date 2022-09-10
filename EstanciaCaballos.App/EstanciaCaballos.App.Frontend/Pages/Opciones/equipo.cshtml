@@ -1,0 +1,27 @@
+﻿@page
+@model EstanciaCaballos.App.Frontend.Pages.equipoModel
+@{
+}
+<div class="row">
+  
+@foreach (var item in Model.miLista)
+{
+    <div class="col-sm-4">
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+        <div class="card-header bg-transparent border-success">@item.Rol</div>
+        <div class="card-body text-success">
+            <h5 class="card-title">@item.Nombre</h5>
+            <p class="card-text">
+                <ul>
+                @foreach (var rolDes in @item.DescripcionRol)
+                {
+                    <li>@rolDes</li>
+                }</ul>
+                </p>
+        </div>
+        <!--<div class="card-footer bg-transparent border-success">Footer</div>-->
+        </div>
+    </div>
+}
+ 
+</div>

@@ -1,0 +1,94 @@
+﻿@page
+@model EstanciaCaballos.App.Frontend.Pages.caballoModel
+@{
+}
+<div class="container" id="caballoFormulario" style="display: none;">
+  <h1>Añadir Caballo</h1>
+  <form class="row g-3 needs-validation" novalidate>
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">Nombre</label>
+      <input type="text" class="form-control" placeholder="Lolita" required>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">Color</label>
+      <input type="text" class="form-control" placeholder="Negro" required>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustomUsername" class="form-label">Raza</label>
+      <div class="input-group has-validation">
+        <input type="text" class="form-control" placeholder="Raza" required>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom04" class="form-label">Propietario</label>
+      <select class="form-select"  required>
+        <option selected disabled placeholder="">..</option>
+        <option>opcion2</option>
+        <option>opcion3</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom05" class="form-label">Veterinario</label>
+      <select class="form-select"  required>
+        <option selected disabled placeholder="">..</option>
+        <option>opcion2</option>
+        <option>opcion3</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom06" class="form-label">Finca</label>
+      <select class="form-select"  required>
+        <option selected disabled placeholder="">..</option>
+        <option>opcion2</option>
+        <option>opcion3</option>
+      </select>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit"  onclick="mostarFormulario()">Guardar</button>
+    </div>
+  </form>
+</div>
+
+<div class="container" id="caballoPrincipal">
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button type="button" class="btn btn-outline-primary"  onclick="mostarFormulario()"><i class="fa-solid fa-plus"></i></button>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"><b>Caballo</b></th>
+        <th scope="col"><b>Color</b></th>
+        <th scope="col"><b>Raza</b></th>
+        <th scope="col"><b>Acciones</b></th>
+      </tr>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Lolita</th>
+          <td>Negro</td>
+          <td>Raza</td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+              <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-eye"></i></button>
+              <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-pen"></i></button>
+              <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-minus"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </thead>
+  </table>
+</div>
+
+<script>
+function mostarFormulario() {
+  var x = document.getElementById("caballoFormulario");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+</script>
