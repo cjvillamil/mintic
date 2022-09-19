@@ -12,6 +12,8 @@ namespace EstanciaCaballos.App.Persistencia
         public DbSet<Recomendacion> Recomendaciones {get; set;}
         public DbSet<Veterinario> Veterinarios {get; set;}
 
+        public DbSet<PersonaPrueba> persona2 {get; set;}
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if(!optionsBuilder.IsConfigured)

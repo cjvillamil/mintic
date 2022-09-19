@@ -41,7 +41,7 @@ namespace EstanciaCaballos.App.Persistencia
 
         Persona IRepositorioPersona.GetPersona(int IDPersona)
         {
-            var PersonaEncontrado = _appContext.Personas.FirstOrDefault(p => p.Id == IDPersona); //Id proviene de clase Persona por herencia
+            var PersonaEncontrado = _appContext.Personas.FirstOrDefault(p=>p.Id== IDPersona); //Id proviene de clase Persona por herencia
 
             return PersonaEncontrado;
         }
