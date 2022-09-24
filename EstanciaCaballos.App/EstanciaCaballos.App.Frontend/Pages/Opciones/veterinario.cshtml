@@ -98,16 +98,24 @@
         <th scope="col"><b>Dirección</b></th>
         <th scope="col"><b>Teléfono</b></th>
         <th scope="col"><b>Correo</b></th>
+        <th scope="col"><b>Licencia</b></th>
+        <th scope="col"><b>Disponible</b></th>
+        <th scope="col"><b>Horario</b></th>
         <th scope="col"><b>Acciones</b></th>
         </tr>
         <tbody>
+          @foreach (var veterinario in Model.veterinarios)
+        {
         <tr>
-            <th scope="row">1</th>
-            <td>Carol</th>
-            <td>Villamil</td>
-            <td>Calle 1 # 2 - 3</td>
-            <td>9876543210</td>
-            <td>uncorre@gmail.com.co</td>
+            <th scope="row">@veterinario.Id</th>
+            <td>@veterinario.nombre</td>
+            <td>@veterinario.apellido</td>
+            <td>@veterinario.direccion</td>
+            <td>@veterinario.telefono</td>
+            <td>@veterinario.correo</td>
+            <td>@veterinario.licencia</td>
+            <td>@veterinario.estaDisponible</td>
+            <td>@veterinario.horarioAtencion</td>
             <td>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
                 <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-eye"></i></button>
@@ -116,6 +124,7 @@
             </div>
             </td>
         </tr>
+        }
         </tbody>
     </thead>
     </table>

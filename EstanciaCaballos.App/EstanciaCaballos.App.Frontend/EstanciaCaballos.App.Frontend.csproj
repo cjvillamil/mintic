@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EstanciaCaballos.App.Dominio\EstanciaCaballos.App.Dominio.csproj" />
+    <ProjectReference Include="..\EstanciaCaballos.App.Persistencia\EstanciaCaballos.App.Persistencia.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

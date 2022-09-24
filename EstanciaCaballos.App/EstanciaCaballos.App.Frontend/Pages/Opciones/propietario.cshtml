@@ -52,13 +52,15 @@
         <th scope="col"><b>Acciones</b></th>
         </tr>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Carol</th>
-            <td>Villamil</td>
-            <td>Calle 1 # 2 - 3</td>
-            <td>9876543210</td>
-            <td>uncorre@gmail.com.co</td>
+        @foreach (var propietario in Model.propietarios)
+        {
+          <tr>
+            <th scope="row">@propietario.Id</th>
+            <td>@propietario.nombre</td>
+            <td>@propietario.apellido</td>
+            <td>@propietario.direccion</td>
+            <td>@propietario.telefono</td>
+            <td>@propietario.correo</td>
             <td>
             <div class="btn-group" role="group" aria-label="Basic outlined example">
                 <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-eye"></i></button>
@@ -66,7 +68,8 @@
                 <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-minus"></i></button>
             </div>
             </td>
-        </tr>
+          </tr>
+        }
         </tbody>
     </thead>
     </table>
