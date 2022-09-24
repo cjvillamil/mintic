@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EstanciaCaballos.App.Persistencia.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20220906051043_carga")]
+    [Migration("20220924051259_carga")]
     partial class carga
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,13 @@ namespace EstanciaCaballos.App.Persistencia.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("fincaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("propietarioId")
                         .HasColumnType("int");
 
@@ -47,6 +54,8 @@ namespace EstanciaCaballos.App.Persistencia.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("fincaId");
 
                     b.HasIndex("propietarioId");
 
@@ -95,6 +104,30 @@ namespace EstanciaCaballos.App.Persistencia.Migrations
                     b.HasIndex("recomendacionVisitaId");
 
                     b.ToTable("DocumentosVisita");
+                });
+
+            modelBuilder.Entity("EstanciaCaballos.App.Dominio.Finca", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("direccion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("telefono")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Finca");
                 });
 
             modelBuilder.Entity("EstanciaCaballos.App.Dominio.Historia", b =>
@@ -207,6 +240,10 @@ namespace EstanciaCaballos.App.Persistencia.Migrations
 
             modelBuilder.Entity("EstanciaCaballos.App.Dominio.Caballo", b =>
                 {
+                    b.HasOne("EstanciaCaballos.App.Dominio.Finca", "finca")
+                        .WithMany()
+                        .HasForeignKey("fincaId");
+
                     b.HasOne("EstanciaCaballos.App.Dominio.Persona", "propietario")
                         .WithMany()
                         .HasForeignKey("propietarioId");
@@ -214,6 +251,8 @@ namespace EstanciaCaballos.App.Persistencia.Migrations
                     b.HasOne("EstanciaCaballos.App.Dominio.Veterinario", "veterinarioAsignado")
                         .WithMany()
                         .HasForeignKey("veterinarioAsignadoId");
+
+                    b.Navigation("finca");
 
                     b.Navigation("propietario");
 

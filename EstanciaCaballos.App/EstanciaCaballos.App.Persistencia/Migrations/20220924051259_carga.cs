@@ -2,10 +2,25 @@
 
 namespace EstanciaCaballos.App.Persistencia.Migrations
 {
-    public partial class inicial : Migration
+    public partial class carga : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Finca",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    direccion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    telefono = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Finca", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Personas",
                 columns: table => new
@@ -51,6 +66,8 @@ namespace EstanciaCaballos.App.Persistencia.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     veterinarioAsignadoId = table.Column<int>(type: "int", nullable: true),
                     propietarioId = table.Column<int>(type: "int", nullable: true),
+                    fincaId = table.Column<int>(type: "int", nullable: true),
+                    nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     color = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     raza = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     especie = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -58,6 +75,12 @@ namespace EstanciaCaballos.App.Persistencia.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Caballos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Caballos_Finca_fincaId",
+                        column: x => x.fincaId,
+                        principalTable: "Finca",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Caballos_Personas_propietarioId",
                         column: x => x.propietarioId,
@@ -126,6 +149,11 @@ namespace EstanciaCaballos.App.Persistencia.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Caballos_fincaId",
+                table: "Caballos",
+                column: "fincaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Caballos_propietarioId",
                 table: "Caballos",
                 column: "propietarioId");
@@ -164,6 +192,9 @@ namespace EstanciaCaballos.App.Persistencia.Migrations
 
             migrationBuilder.DropTable(
                 name: "Caballos");
+
+            migrationBuilder.DropTable(
+                name: "Finca");
 
             migrationBuilder.DropTable(
                 name: "Personas");

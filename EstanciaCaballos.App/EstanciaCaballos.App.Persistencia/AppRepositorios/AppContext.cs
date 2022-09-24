@@ -16,8 +16,8 @@ namespace EstanciaCaballos.App.Persistencia
         {
             if(!optionsBuilder.IsConfigured)
             {
-                optionsBuilder
-                .UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = EstanciaCaballos");
+                //optionsBuilder.UseSqlServer("server=CAROL-WIN ; database=EstanciaCaballos ; integrated security = true");
+                optionsBuilder.UseSqlServer("Server=localhost ; Database=EstanciaCaballos;User Id=sa;Password=123;");
             }
         }
 

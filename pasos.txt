@@ -30,6 +30,10 @@ dotnet ef migrations add inicial --startup-project ..\EstanciaCaballos.App.Conso
 dotnet ef database update --startup-project ..\EstanciaCaballos.App.Console\
 
 
+en Frontend
+creamos carpeta Saludos
+dotnet new page -n listas -na EstanciaCaballos.App.Frontend.Pages -o .\Pages\Saludos\ --force
+
 
 SqlServer
 Cadena de conexion: Server=localhost\SQLEXPRESS01;Database=master;Trusted_Connection=True;
