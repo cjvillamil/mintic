@@ -10,8 +10,8 @@ namespace EstanciaCaballos.App.Persistencia
 
 
 
-        public RepositorioPersona2(AppContext AppContext){
-            _appContext=AppContext;
+        public RepositorioPersona2(AppContext appContext){
+            _appContext=appContext;
         } //Cosntructor Clase RepositorioPaciente
                 
         PersonaPrueba IRepositorioPersona2.AddPersona2(PersonaPrueba Persona2_2)
@@ -39,9 +39,9 @@ namespace EstanciaCaballos.App.Persistencia
 
         }
         //IE
-         PersonaPrueba IRepositorioPersona2.GetPersona2(int IDPersona)
+         PersonaPrueba IRepositorioPersona2.GetPersona2(string nombre)
         {
-             var PersonaEncontrado = _appContext.persona2.FirstOrDefault(u => u.Id == IDPersona); //Id proviene de clase Persona por herencia
+             var PersonaEncontrado = _appContext.persona2.Single(u => u.nombre == nombre); //Id proviene de clase Persona por herencia
             Console.WriteLine(PersonaEncontrado.nombre);
             return  PersonaEncontrado;//_appContext.persona2.FirstOrDefault(p => p.Id== IDPersona);
         }

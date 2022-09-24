@@ -12,7 +12,7 @@ namespace EstanciaCaballos.App.Persistencia
          void DeletePersona2(int IDPersona);
          IEnumerable<PersonaPrueba> GetAllPersona2(); //IEnumerable es un tipo defindo en C#
 
-         PersonaPrueba GetPersona2(int IDPersona);
+         PersonaPrueba GetPersona2(string nombre);
 
     }
  

@@ -13,12 +13,13 @@ namespace EstanciaCaballos.App.Consola2{
     private static IRepositorioPersona2 _repoPersona=new RepositorioPersona2(new Persistencia.AppContext());
         static void Main(string[] args){
            Console.WriteLine("Hello, World!");
-           GetPersona2(6);
+          // AddPersona1();
+          GetPersona2_1("camilo");
         }
 
         private static void AddPersona1(){
            var persona2=new PersonaPrueba(){
-            //Id=1,
+            //Id=5,
             nombre="rodrigo",
             apellido="arias",
 
@@ -28,9 +29,10 @@ namespace EstanciaCaballos.App.Consola2{
            Console.WriteLine("usuario añadido");
         }
 
-        private static void GetPersona2(int id){
+        private static void GetPersona2_1(string nombre){
            
-            var persona_encontrada=_repoPersona.GetPersona2(id);
+            Console.WriteLine("usuario añadido");
+            var persona_encontrada=_repoPersona.GetPersona2(nombre);
             /*if(persona_encontrada!=null){
                 
                 Console.WriteLine("el nombre es"+persona_encontrada.nombre);
