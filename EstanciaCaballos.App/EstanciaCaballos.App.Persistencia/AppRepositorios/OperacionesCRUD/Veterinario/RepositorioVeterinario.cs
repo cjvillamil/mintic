@@ -4,59 +4,59 @@ using System.Linq;
 
 namespace EstanciaCaballos.App.Persistencia
 {
-    public class RepositorioPersona : IRepositorioPersona
+    public class RepositorioVeterinario : IRepositorioVeterinario
     {
         private readonly AppContext _appContext; //instancia de Objeto de Clase AppContext
 
 
 
-        public RepositorioPersona(AppContext AppContext){
+        public RepositorioVeterinario(AppContext AppContext){
             _appContext=AppContext;
         } //Cosntructor Clase RepositorioPaciente
                 
-        Persona IRepositorioPersona.AddPersona(Persona Persona)
+        Veterinario IRepositorioVeterinario.AddVeterinario(Veterinario  veterinario_1)
         {
-            var PersonaAdicionado = _appContext.Personas.Add(Persona);
+            var PersonaAdicionado = _appContext.Veterinarios.Add(veterinario_1);
             _appContext.SaveChanges();
             return PersonaAdicionado.Entity;
 
         }
-        void IRepositorioPersona.DeletePersona(int IDPersona)
+        void IRepositorioVeterinario.DeleteVeterinario(int IDPersona)
         {
-            var PersonaEncontrado = _appContext.Personas.FirstOrDefault(p => p.Id == IDPersona);
+            var PersonaEncontrado = _appContext.Veterinarios.FirstOrDefault(p => p.Id == IDPersona);
             if (PersonaEncontrado == null)
             {
                 return;
             }
-            _appContext.Personas.Remove(PersonaEncontrado);
+            _appContext.Veterinarios.Remove(PersonaEncontrado);
             _appContext.SaveChanges();
         }
 
-        IEnumerable<Persona> IRepositorioPersona.GetAllPersona()
+        IEnumerable<Veterinario> IRepositorioVeterinario.GetAllVeterinario()
         {
-            return _appContext.Personas;
+            return _appContext.Veterinarios;
 
         }
         //IEnumerable es un tipo defindo en C#
 
-        Persona IRepositorioPersona.GetPersona(int IDPersona)
+        Veterinario IRepositorioVeterinario.GetVeterinario(int IDVeterinario)
         {
-            var PersonaEncontrado = _appContext.Personas.FirstOrDefault(p=>p.Id== IDPersona); //Id proviene de clase Persona por herencia
+            var PersonaEncontrado = _appContext.Veterinarios.FirstOrDefault(p=>p.Id== IDVeterinario); //Id proviene de clase Persona por herencia
 
             return PersonaEncontrado;
         }
 
-        Persona IRepositorioPersona.UpdatePersona(Persona Persona)
+        Veterinario IRepositorioVeterinario.UpdateVeterinario (Veterinario veterinario_2)
         {
-            var PersonaEncontrado = _appContext.Personas.FirstOrDefault(p => p.Id == Persona.Id); //Id proviene de clase Persona por herencia
-            if (PersonaEncontrado != null)
+            var veterinario_Encontrado = _appContext.Veterinarios.FirstOrDefault(p => p.Id == veterinario_2.Id); //Id proviene de clase Persona por herencia
+            if (veterinario_Encontrado != null)
             {
-                PersonaEncontrado.nombre = Persona.nombre;
-                PersonaEncontrado.apellido = Persona.apellido;
+                veterinario_Encontrado.nombre = veterinario_2.nombre;
+                veterinario_Encontrado.apellido = veterinario_2.apellido;
                 //Incluir demás Atributos
                 _appContext.SaveChanges();
             }
-            return PersonaEncontrado;
+            return veterinario_Encontrado;
         }
     }
 }
