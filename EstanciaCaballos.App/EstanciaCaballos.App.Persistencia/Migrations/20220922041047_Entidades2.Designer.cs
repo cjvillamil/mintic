@@ -3,14 +3,16 @@ using EstanciaCaballos.App.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EstanciaCaballos.App.Persistencia.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20220922041047_Entidades2")]
+    partial class Entidades2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,27 +44,15 @@ namespace EstanciaCaballos.App.Persistencia.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("fincaId")
-                        .HasColumnType("int");
-
                     b.Property<string>("nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("propietarioId")
-                        .HasColumnType("int");
 
                     b.Property<string>("raza")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("fincaId");
-
-                    b.HasIndex("propietarioId");
-
-                    b.HasIndex("veterinarioAsignadoId");
 
                     b.ToTable("Caballos");
                 });
@@ -103,30 +93,6 @@ namespace EstanciaCaballos.App.Persistencia.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DocumentosVisita");
-                });
-
-            modelBuilder.Entity("EstanciaCaballos.App.Dominio.Finca", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("direccion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("telefono")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Finca");
                 });
 
             modelBuilder.Entity("EstanciaCaballos.App.Dominio.Historia", b =>
@@ -253,51 +219,6 @@ namespace EstanciaCaballos.App.Persistencia.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("Veterinario");
-                });
-
-            modelBuilder.Entity("EstanciaCaballos.App.Dominio.Caballo", b =>
-                {
-                    b.HasOne("EstanciaCaballos.App.Dominio.Finca", "finca")
-                        .WithMany()
-                        .HasForeignKey("fincaId");
-
-                    b.HasOne("EstanciaCaballos.App.Dominio.Persona", "propietario")
-                        .WithMany()
-                        .HasForeignKey("propietarioId");
-
-                    b.HasOne("EstanciaCaballos.App.Dominio.Veterinario", "veterinarioAsignado")
-                        .WithMany()
-                        .HasForeignKey("veterinarioAsignadoId");
-
-                    b.Navigation("finca");
-
-                    b.Navigation("propietario");
-
-                    b.Navigation("veterinarioAsignado");
-                });
-
-            modelBuilder.Entity("EstanciaCaballos.App.Dominio.DocumentoVisita", b =>
-                {
-                    b.HasOne("EstanciaCaballos.App.Dominio.Caballo", "caballoAsociado")
-                        .WithMany()
-                        .HasForeignKey("caballoAsociadoId");
-
-                    b.HasOne("EstanciaCaballos.App.Dominio.Recomendacion", "recomendacionVisita")
-                        .WithMany()
-                        .HasForeignKey("recomendacionVisitaId");
-
-                    b.Navigation("caballoAsociado");
-
-                    b.Navigation("recomendacionVisita");
-                });
-
-            modelBuilder.Entity("EstanciaCaballos.App.Dominio.Historia", b =>
-                {
-                    b.HasOne("EstanciaCaballos.App.Dominio.Caballo", "caballoAsociado")
-                        .WithMany()
-                        .HasForeignKey("caballoAsociadoId");
-
-                    b.Navigation("caballoAsociado");
                 });
 #pragma warning restore 612, 618
         }
